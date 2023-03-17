@@ -414,6 +414,12 @@ int main(int argc, char** argv) {
         int b = RemapSdlButton(event.cbutton.button);
         if (b >= 0)
           HandleGamepadInput(b, event.type == SDL_CONTROLLERBUTTONDOWN);
+          
+          // Check for start and select buttons pressed
+        SDL_GameController* controller = SDL_GameControllerFromInstanceID(event.cbutton.which);
+        if (SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_START) && SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_BACK)) {
+            running = false;
+        }
         break;
       }
       case SDL_MOUSEWHEEL:
@@ -430,9 +436,9 @@ int main(int argc, char** argv) {
         break;
       case SDL_KEYDOWN:
         HandleInput(event.key.keysym.sym, event.key.keysym.mod, true);
-              if (event.key.keysym.sym == SDLK_ESCAPE) {  // added a check if Escape is pressed
+              if (event.key.keysym.sym == SDLK_ESCAPE) {  // added code starts here
               running = false;
-              }  // Then the Program will close
+              }  // added code ends here
         break;
       case SDL_KEYUP:
         HandleInput(event.key.keysym.sym, event.key.keysym.mod, false);
