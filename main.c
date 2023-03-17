@@ -430,6 +430,9 @@ int main(int argc, char** argv) {
         break;
       case SDL_KEYDOWN:
         HandleInput(event.key.keysym.sym, event.key.keysym.mod, true);
+              if (event.key.keysym.sym == SDLK_ESCAPE) {  // added code starts here
+              running = false;
+              }  // added code ends here
         break;
       case SDL_KEYUP:
         HandleInput(event.key.keysym.sym, event.key.keysym.mod, false);
@@ -563,12 +566,7 @@ static void RenderNumber(uint8 *dst, size_t pitch, int n, bool big) {
 static void HandleCommand_Locked(uint32 j, bool pressed);
 
 static void HandleCommand(uint32 j, bool pressed) {
-  
-  if (j == SDLK_ESCAPE) {
-  // Exit the application if Escape is pressed
-  SDL_Quit();
-  running = false
-  }
+
   if (j <= kKeys_Controls_Last) {
     static const uint8 kKbdRemap[] = { 0, 4, 5, 6, 7, 2, 3, 8, 0, 9, 1, 10, 11 };
     if (pressed)
