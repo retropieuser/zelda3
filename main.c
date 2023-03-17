@@ -567,7 +567,7 @@ static void HandleCommand(uint32 j, bool pressed) {
   if (j == SDLK_ESCAPE) {
   // Exit the application if Escape is pressed
   SDL_Quit();
-  exit(0);
+  running = false
   }
   if (j <= kKeys_Controls_Last) {
     static const uint8 kKbdRemap[] = { 0, 4, 5, 6, 7, 2, 3, 8, 0, 9, 1, 10, 11 };
