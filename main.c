@@ -430,9 +430,9 @@ int main(int argc, char** argv) {
         break;
       case SDL_KEYDOWN:
         HandleInput(event.key.keysym.sym, event.key.keysym.mod, true);
-              if (event.key.keysym.sym == SDLK_ESCAPE) {  // added code starts here
+              if (event.key.keysym.sym == SDLK_ESCAPE) {  // added a check if Escape is pressed
               running = false;
-              }  // added code ends here
+              }  // Then the Program will close
         break;
       case SDL_KEYUP:
         HandleInput(event.key.keysym.sym, event.key.keysym.mod, false);
